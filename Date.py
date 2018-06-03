@@ -66,22 +66,21 @@ def date():
 
 def number_of_day(c_time):
     if c_time[0] == 'Jun':
-        return int(c_time[1]) + 8 # В мае 8 свободных дней
+        return int(c_time[1]) + 8
     elif c_time[0] == 'Jul':
-        return int(c_time[1]) + 38 # В июне 30 свободных дней
+        return int(c_time[1]) + 38
     else:
-        return int(c_time[1]) + 69 # В июле 31 свободный день
+        return int(c_time[1]) + 69
 
 def change_name():
     global u_log, u_pas
     hours = (number_of_day(date()) - 1) * 24 + int(cur_time()[0])
     vk = vk_api.VkApi(login = u_log, password = u_pas)
     vk.auth()
-    vk.method('messages.editChat', {'chat_id':int(user_data[2]), 'title':periodic_number((9 * 2400 + hours), 2400)+ ' Д'})
+    vk.method('messages.editChat', {'chat_id':int(user_data[2]), 'title':periodic_number((9 * 2400 + hours), 2400)+ ' D'})
     return 0
 
 
-print('Для корректной работы в одной папке с этим файлом должен быть сохранён файл fin.txt.\nВ нём должны быть Ваш логин, пароль для VK и ваш chat_id беседы d20!\nОни должны быть записаны в одну строчку через пробел (сначала -- логин, потом -- пароль, в конце -- chat_id)!')
 fin = open('fin.txt', 'r')
 user_data = fin.readlines()[0].split()
 u_log, u_pas = user_data[0], user_data[1]
