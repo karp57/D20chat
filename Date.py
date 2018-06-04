@@ -77,7 +77,7 @@ def change_name():
     hours = (number_of_day(date()) - 1) * 24 + int(cur_time()[0])
     vk = vk_api.VkApi(login = u_log, password = u_pas)
     vk.auth()
-    vk.method('messages.editChat', {'chat_id':int(user_data[2]), 'title':periodic_number((9 * 2400 + hours), 2400)+ ' D'})
+    vk.method('messages.editChat', {'chat_id':int(user_data[2]), 'title':periodic_number((9 * 2400 + hours), 2400)+ ' Д'})
     return 0
 
 
