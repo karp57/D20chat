@@ -73,17 +73,17 @@ def number_of_day(c_time):
         return int(c_time[1]) + 69
 
 def change_name():
-    global u_log, u_pas
+    global u_log, u_pas, uid
     hours = (number_of_day(date()) - 1) * 24 + int(cur_time()[0])
     vk = vk_api.VkApi(login = u_log, password = u_pas)
     vk.auth()
-    vk.method('messages.editChat', {'chat_id':int(user_data[2]), 'title':periodic_number((9 * 2400 + hours), 2400)+ ' Д'})
+    vk.method('messages.editChat', {'chat_id':int(uid), 'title':periodic_number((9 * 2400 + hours), 2400)+ ' Д'})
     return 0
 
 
 fin = open('fin.txt', 'r')
 user_data = fin.readlines()[0].split()
-u_log, u_pas = user_data[0], user_data[1]
+u_log, u_pas, uid = user_data[0], user_data[1], user_data[2]
 change_name()
 print('Success')
 time.sleep(to_next_hour(cur_time()) + 10)
